@@ -17,3 +17,9 @@ document.getElementById("film").addEventListener("change", function() {
   video.play();
 
 });
+
+async function createDetector() {
+  const modelType = poseDetection.movenet.modelType.SINGLEPOSE_THUNDER;
+  const model = poseDetection.SupportedModels.MoveNet;
+  return poseDetection.createDetector(model, {modelType});
+}
