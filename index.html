@@ -4,15 +4,50 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Climb h a r d </title>
+    <style>
+      body {
+        margin: 0;
+      }
+      #main {
+        margin: 0;
+        position: relative;
+      }
+      #canvas-wrapper {
+        margin-top: 80px;
+        position: relative;
+      }
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      #top-bar {
+        margin-left: 300px;
+        position: relative;
+      }
+    </style>
   </head>
   <body>
-    <h1>ClimbOn!</h1>
-    <label for="film" >Import Video:</label>
-    <input type="file" id="film" name="film" accept="video/mp4" />
+    <div class="container">
+      <div class="top-bar">
+        <label for="film" >Import Video:</label>
+        <input type="file" id="film" name="film" accept="video/mp4" />
+        <button id="submit">Run</button>
+      </div>
+    </div>
     
-    <video controls id="filmDisplay">
-    </video>
+
+    <div class="container" id="canvas-wrapper">
+      <canvas id="output"></canvas>
+      <video controls id="video">
+        <source id="currentVID" src="" type="video/mp4">
+      </video>
+    </div>
+    
     <script type="module" src="/main.js"></script>
+    <div class="container">
+      <span id="status"></span>
+    </div>
   </body>
 </html>

@@ -27,9 +27,11 @@ export class Context {
     }
 
     drawResults(poses) {
-        for (const pose of poses) {
-            this.drawResults(pose);
-        }
+        console.log(poses[0].keypoints);
+        poses[0].keypoints.forEach(pose => {
+            this.drawResult(pose);
+        })
+
     }
 
     drawResult(pose) {
@@ -42,8 +44,8 @@ export class Context {
     drawKeypoints(keypoints) {
         const keypointInd = poseDetection.util.getKeypointIndexBySide(model);
         
-        this.ctx.fillStyle = 'White';
-        this.ctx.strokeStyle = 'White';
+        this.ctx.fillStyle = 'Red';
+        this.ctx.strokeStyle = 'Red';
         this.ctx.lineWidth = defaultLineWidth;
 
         for (const i of keypointInd.middle) {
