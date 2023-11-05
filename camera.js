@@ -27,15 +27,14 @@ export class Context {
     }
 
     drawResults(poses) {
-        console.log(poses[0].keypoints);
-        poses[0].keypoints.forEach(pose => {
-            this.drawResult(pose);
-        })
-
+        for (const pose of poses) {
+          this.drawResult(pose);
+        }
     }
-
     drawResult(pose) {
+        // console.log(pose);
         if (pose.keypoints != null) {
+            console.log(pose.keypoints);
             this.drawKeypoints(pose.keypoints);
             this.drawSkeleton(pose.keypoints);
         }
@@ -43,13 +42,13 @@ export class Context {
 
     drawKeypoints(keypoints) {
         const keypointInd = poseDetection.util.getKeypointIndexBySide(model);
-        
-        this.ctx.fillStyle = 'Red';
-        this.ctx.strokeStyle = 'Red';
+        console.log(keypointInd);
+        this.ctx.fillStyle = 'White';
+        this.ctx.strokeStyle = 'White';
         this.ctx.lineWidth = defaultLineWidth;
 
         for (const i of keypointInd.middle) {
-            this.drawKeypoints(keypoints[i]);
+            this.drawKeypoint(keypoints[i]);
         }
 
         this.ctx.fillStyle = 'Green';
@@ -78,7 +77,7 @@ export class Context {
     drawSkeleton(keypoints) {
         this.ctx.fillStyle = 'White';
         this.ctx.strokeStyle = 'White';
-        this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
+        this.ctx.lineWidth = defaultLineWidth;
     
         poseDetection.util.getAdjacentPairs(model)
             .forEach(([i, j]) => {
@@ -123,8 +122,5 @@ export class Context {
           window.URL.revokeObjectURL(url);
         }
       }
-
-
-
 
 }
